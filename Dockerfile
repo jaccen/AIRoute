@@ -36,6 +36,11 @@ RUN --mount=type=cache,id=apt-cache,target=/var/cache/apt,sharing=shared \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
+# .npmrc must be present before `npm ci`/`npm rebuild` so npm 12+ reads the
+# allow-scripts whitelist (better-sqlite3 native rebuild) and the fetch-retry
+# budget. Without it the rebuild is silently skipped and the container fails
+# with "Could not locate the bindings file" (v3.8.46 Docker build break).
+COPY .npmrc ./
 # Workspace package manifests MUST be present before `npm ci` so npm materializes
 # the workspace and installs its *workspace-only* deps (e.g. safe-regex,
 # @toon-format/toon — declared in open-sse/package.json, not hoisted to root).
@@ -154,8 +159,8 @@ CMD ["node", "dev/run-standalone.mjs"]
 # ── Runner Web (web-cookie providers: Gemini Web, Claude Turnstile) ───────────
 #
 #  Two image flavors:
-#    runner-base  →  AIRoute:VERSION        Lean base (~500 MB). No browsers.
-#    runner-web   →  AIRoute:VERSION-web    +Chromium/Playwright (~800 MB).
+#    runner-base  →  AIRoute:VERSION        Lean base (~2.3 GB). No browsers.
+#    runner-web   →  AIRoute:VERSION-web    +Chromium/Playwright (~3.8 GB).
 #
 #  Use runner-web when you need web-cookie providers (gemini-web, claude-web,
 #  claude-turnstile). For all other providers runner-base is sufficient.

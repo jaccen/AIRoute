@@ -1,3 +1,13 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '80f83f12-b91b-4914-8b32-7a855d90fdfb'
+  PropagateID: '80f83f12-b91b-4914-8b32-7a855d90fdfb'
+  ReservedCode1: '2f911d7a-9c64-4215-adce-43b448b55736'
+  ReservedCode2: '2f911d7a-9c64-4215-adce-43b448b55736'
+---
 
 <div align="center">
 
@@ -313,9 +323,9 @@ Dockerfile 提供三个运行时目标（target），按需选择：
 
 | Target | 镜像标签 | 大小 | 适用场景 |
 |--------|----------|------|----------|
-| `runner-base` | `airoute:base` | ~500 MB | 绝大多数 Provider，推荐默认使用 |
-| `runner-web` | `airoute:web` | ~800 MB | 需要 Playwright/Chromium 的 Web-Cookie Provider（gemini-web、claude-web、claude-turnstile） |
-| `runner-cli` | `airoute:cli` | ~900 MB | 容器内安装 Codex/Claude Code/Droid/OpenClaw CLI |
+| `runner-base` | `airoute:base` | ~2.3 GB | 绝大多数 Provider，推荐默认使用 |
+| `runner-web` | `airoute:web` | ~3.8 GB | 需要 Playwright/Chromium 的 Web-Cookie Provider（gemini-web、claude-web、claude-turnstile） |
+| `runner-cli` | `airoute:cli` | ~5.6 GB | 容器内安装 Codex/Claude Code/Droid/OpenClaw CLI |
 
 #### 方式一：Docker Compose（推荐）
 
@@ -330,7 +340,7 @@ cp .env.example .env
 ```bash
 AIRROUTE_REGION=cn
 STORAGE_ENCRYPTION_KEY=<openssl rand -hex 32>   # 加密密钥
-JWT_SECRET=<>=32字符的随机字符串>                  # JWT 签名密钥
+JWT_SECRET=<32字符的随机字符串>                  # JWT 签名密钥
 INITIAL_PASSWORD=<你的强密码>                     # 管理员密码，不可为 CHANGEME
 REDIS_PASSWORD=<Redis密码>                        # Redis 认证密码
 ```

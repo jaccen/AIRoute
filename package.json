@@ -296,7 +296,7 @@
     "@atjsh/llmlingua-2": "2.0.3",
     "@huggingface/transformers": "3.5.2",
     "@tensorflow/tfjs": "4.22.0",
-    "better-sqlite3": "^12.10.0",
+    "better-sqlite3": "^13.0.3",
     "js-tiktoken": "^1.0.20",
     "keytar": "^7.9.0",
     "tls-client-node": "^0.2.0",

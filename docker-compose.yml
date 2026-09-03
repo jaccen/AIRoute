@@ -1,4 +1,4 @@
-﻿# ──────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────────────────
 #  AIRoute — Docker Compose
 # ──────────────────────────────────────────────────────────────────────
 #
@@ -87,7 +87,7 @@ services:
     build:
       context: .
       target: runner-base
-    image: AIRoute:base
+    image: airoute:base
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -104,7 +104,7 @@ services:
     build:
       context: .
       target: runner-web
-    image: AIRoute:web
+    image: airoute:web
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -118,7 +118,7 @@ services:
     build:
       context: .
       target: runner-cli
-    image: AIRoute:cli
+    image: airoute:cli
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -137,7 +137,7 @@ services:
     build:
       context: .
       target: runner-base
-    image: AIRoute:base
+    image: airoute:base
     ports:
       - "${DASHBOARD_PORT:-20128}:${DASHBOARD_PORT:-20128}"
       - "${API_PORT:-20129}:${API_PORT:-20129}"
@@ -150,7 +150,7 @@ services:
     # Previously 0.0.0.0 exposed the service on all interfaces in the container,
     # making it reachable from any network the Docker host is on.
     # Use API_HOST=0.0.0.0 only when an upstream reverse proxy (Caddy/Nginx) is in front.
-    - API_HOST=${API_HOST:-127.0.0.1}
+      - API_HOST=${API_HOST:-127.0.0.1}
       - CLI_MODE=host
       - CLI_EXTRA_PATHS=/host-local/bin:/host-node/bin
       - CLI_CONFIG_HOME=/host-home
